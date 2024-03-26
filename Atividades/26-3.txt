@@ -1,0 +1,7 @@
+Assista ao vídeo a seguir e reproduza as mecânicas implementadas.
+https://www.youtube.com/watch?v=_VUpFFVHZVQ
+Depois de ter o personagem 100% implementado, modifique o código de movimento do personagem
+de modo que o jogador possa ser capaz de, além de andar, também correr com o personagem.
+
+Envie o código de movimento modificado para marcos.prof.cps@bentoquirino.com.br
+Assunto "Sprint 2º Games"
