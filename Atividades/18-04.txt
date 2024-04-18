@@ -1,0 +1,20 @@
+SHARK:
+
+Preparar os seguintes itens para dia 09/05.
+LEMBRE-SE DA RESOLUÇÂO: 16:9 (1280x720)
+LEMBRE-SE: POTÊNCIA DE 2
+
+HUD:
+- Ícone do contador de munições;
+- Mira (crosshair);
+- Ícone de contagem de vida;
+
+VFX: (Se possível autoral)
+- Textura para efeito do impacto da bala (explosão de tinta);
+- Textura para efeito de disparo da bala (ex. faísca que sai da arma);
+ 
+GUI:
+- Botões;
+- Janelas;
+- Splash;
+- Fonte (texto); (Se possível autoral)
