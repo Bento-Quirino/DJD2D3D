@@ -1,0 +1,11 @@
+A partir do que foi desenvolvido no Mecânicas/BallCollision.unitypackage
+implemente o 'EnemyPooler', semelhante ao que foi feito no 'BallPooler'.
+Ou seja, em vez de se instanciar, a cada Spawn(), um inimigo novo,
+uma quantidade fixa de inimigos devem ser pre-alocados, e sendo reutilizados mediante
+chamadas do Spawn(), como acontece com o ColorBall.
+Dica: a única diferença entre os dois é que devem ser pre instanciados numa posição diferente do ColorBall,
+e o inimigo não possui contagem de tempo para ser desativado.
+
+Enviar para o código EnemyPooler para marcos.prof.cps@bentoquirino.com.br,
+assunto "EP 2º Games".
+Data: 16/05.
