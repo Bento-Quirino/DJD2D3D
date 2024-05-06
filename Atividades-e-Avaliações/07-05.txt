@@ -8,4 +8,4 @@ e o inimigo não possui contagem de tempo para ser desativado.
 
 Enviar para o código EnemyPooler para marcos.prof.cps@bentoquirino.com.br,
 assunto "EP 2º Games".
-Data: 16/05.
+Data: 12/05.
