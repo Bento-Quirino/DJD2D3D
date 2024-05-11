@@ -1,0 +1,5 @@
+A partir do que foi desenvolvido em aula, implemente:
+- mecânica de dano por cor.
+- dano no jogador (modificando a vida apenas por código).
+- colisão entre balas.
+- pintura dos objetos pintáveis.
