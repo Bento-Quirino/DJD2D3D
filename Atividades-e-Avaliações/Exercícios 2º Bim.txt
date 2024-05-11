@@ -1,0 +1,16 @@
+Exercícios de treino para a prova, com os temas que serão cobrados: Colisão, rigidbody, charactercontroller, input e algoritmo das mecânicas desenvolvidas.
+
+1) Considere dois objetos distintos, A e B. Escreva um código em que, quando o objeto A colidir com o objeto B, suas cores são trocadas.
+2) Escreva um código em que ao iniciar em cena, um objeto instancia um numéro aleatório de objetos.
+3) Escreva um código em que um objeto inicial instancia uma quantidade X de objetos em cena, esses novos objetos devem, por sua vez, instanciar
+    uma quantidade de X/2 de uma segunda leva de objetos. Ou seja, o objeto inicial deve instnaciar uma quantidade X de objetos, que instanciam
+    outros objetos, e a cada geração, a quantidade deve cair pela metade.
+4) Considere um objeto que se move em cena pelo rigidbdy. Faça um código que, quando esse objeto colidir com outro, sua trajetória de movimeto
+    é ajustada para se mover na direção da normal ao ponto de colisão.
+5) O que é um prefab?
+6) Qual é a diferença entre Rigidbody e CharacterController?
+7) Qual é a diferença entre Collider e Collision?
+8) No código desenvolvido em aula, qual é a diferença entre "Collision" e "collision"?
+9) Utilizamos Input.GetAxis() para ler os eixos de controle do jogador. Especificamente no projeto, foi utilizado para mover o jogador pelo cenário.
+    A partir do código desenvolvido em aula, modifique-o de modo que, ao ocorrer uma colisão com uma bola de cor roxa, os controles do jogador ficam invertidos.
+10) Utilizando IEnumerator e o código da questão 9, faça com que o efeito de inversão de controles tenha um tempo de duração. Dica, pense no ciclo de vida da bala.
