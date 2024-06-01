@@ -14,3 +14,189 @@ Exercícios de treino para a prova, com os temas que serão cobrados: Colisão, 
 9) Utilizamos Input.GetAxis() para ler os eixos de controle do jogador. Especificamente no projeto, foi utilizado para mover o jogador pelo cenário.
     A partir do código desenvolvido em aula, modifique-o de modo que, ao ocorrer uma colisão com uma bola de cor roxa, os controles do jogador ficam invertidos.
 10) Utilizando IEnumerator e o código da questão 9, faça com que o efeito de inversão de controles tenha um tempo de duração. Dica, pense no ciclo de vida da bala.
+
+
+
+
+
+CORREÇÃO
+1) Considere dois objetos distintos, A e B. Escreva um código em que, quando o objeto A colidir com o objeto B, suas cores são trocadas.
+
+using UnityEngine;
+
+public class ColorSwapOnCollision : MonoBehaviour
+{
+    private void OnCollisionEnter(Collision collision)
+    {
+        Renderer rendererA = GetComponent<Renderer>();
+        Renderer rendererB = collision.gameObject.GetComponent<Renderer>();
+
+        if (rendererA != null && rendererB != null)
+        {
+            Color tempColor = rendererA.material.color;
+            rendererA.material.color = rendererB.material.color;
+            rendererB.material.color = tempColor;
+        }
+    }
+}
+
+
+2) Escreva um código em que ao iniciar em cena, um objeto instancia um numéro aleatório de objetos.
+using UnityEngine;
+
+public class RandomObjectSpawner : MonoBehaviour
+{
+    public GameObject objectToSpawn;
+    public int minObjects = 1;
+    public int maxObjects = 10;
+
+    void Start()
+    {
+        int numberOfObjects = Random.Range(minObjects, maxObjects + 1);
+        for (int i = 0; i < numberOfObjects; i++)
+        {
+            Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        }
+    }
+}
+
+
+3) Escreva um código em que um objeto inicial instancia uma quantidade X de objetos em cena, esses novos objetos devem, por sua vez, instanciar
+    uma quantidade de X/2 de uma segunda leva de objetos. Ou seja, o objeto inicial deve instnaciar uma quantidade X de objetos, que instanciam
+    outros objetos, e a cada geração, a quantidade deve cair pela metade.
+
+using UnityEngine;
+
+public class RecursiveSpawner : MonoBehaviour
+{
+    public GameObject objectToSpawn;
+    public int initialCount = 10;
+
+    void Start()
+    {
+        SpawnObjects(initialCount);
+    }
+
+    void SpawnObjects(int count)
+    {
+        if (count <= 0) return;
+
+        for (int i = 0; i < count; i++)
+        {
+            GameObject newObj = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+            RecursiveSpawner spawner = newObj.AddComponent<RecursiveSpawner>();
+            spawner.objectToSpawn = objectToSpawn;
+            spawner.initialCount = count / 2;
+        }
+    }
+}
+
+
+4) Considere um objeto que se move em cena pelo rigidbdy. Faça um código que, quando esse objeto colidir com outro, sua trajetória de movimeto
+    é ajustada para se mover na direção da normal ao ponto de colisão.
+
+using UnityEngine;
+
+public class AdjustTrajectoryOnCollision : MonoBehaviour
+{
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Vector3 normal = collision.contacts[0].normal;
+        rb.velocity = Vector3.Reflect(rb.velocity, normal);
+    }
+}
+
+
+5) O que é um prefab?
+Prefab é um template no Unity que permite que você crie, configure e armazene um GameObject completo com todos os seus componentes,
+propriedades e até mesmo objetos filhos, que podem ser reutilizados em várias cenas ou projetos.
+
+
+6) Qual é a diferença entre Rigidbody e CharacterController?
+    Rigidbody: Usa a física do Unity para movimentação, reagindo a forças, gravidade e colisões físicas. Ideal para objetos que precisam de física realista.
+    CharacterController: Não usa a física do Unity, mas sim um sistema de controle de movimento que você define. É ideal para personagens, oferecendo controle direto sobre a movimentação.
+
+
+7) Qual é a diferença entre Collider e Collision?
+    Collider: Componente que define a forma física de um objeto para detecção de colisões. Não detecta colisões por si só.
+    Collision: Objeto passado durante um evento de colisão (como OnCollisionEnter). Contém informações sobre a colisão, como ponto de impacto, normal, etc.
+
+
+8) No código desenvolvido em aula, qual é a diferença entre "Collision" e "collision"?
+    Collision: Nome da classe que representa os detalhes de uma colisão.
+    collision: Instância da classe Collision passada como parâmetro nos métodos de detecção de colisão (como OnCollisionEnter(Collision collision)).
+
+
+9) Utilizamos Input.GetAxis() para ler os eixos de controle do jogador. Especificamente no projeto, foi utilizado para mover o jogador pelo cenário.
+    A partir do código desenvolvido em aula, modifique-o de modo que, ao ocorrer uma colisão com uma bola de cor roxa, os controles do jogador ficam invertidos.
+
+//Resposta aproximada
+using UnityEngine;
+
+public class InvertControlsOnCollision : MonoBehaviour
+{
+    CharacterController controller;
+    private bool controlsInverted = false;
+    float speed;
+
+    void Update()
+    {
+        float moveHorizontal = controlsInverted ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
+        float moveVertical = controlsInverted ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        controllher.Move(movement * speed * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Bullet b = collision.gameObject.GetComponent<Bullet>();
+        if (b.color == AvailablrColors.Purple)
+        {
+            controlsInverted = !controlsInverted;
+        }
+    }
+}
+
+10) Utilizando IEnumerator e o código da questão 9, faça com que o efeito de inversão de controles tenha um tempo de duração. Dica, pense no ciclo de vida da bala.
+
+//Resposta aproximada
+using UnityEngine;
+using System.Collections;
+
+public class InvertControlsWithTimer : MonoBehaviour
+{
+    private bool controlsInverted = false;
+    public float invertDuration = 5.0f;
+
+    void Update()
+    {
+        float moveHorizontal = controlsInverted ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
+        float moveVertical = controlsInverted ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        transform.Translate(movement * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("PurpleBall"))
+        {
+            StartCoroutine(InvertControlsTemporary());
+        }
+    }
+
+    IEnumerator InvertControlsTemporary()
+    {
+        controlsInverted = true;
+        yield return new WaitForSeconds(invertDuration);
+        controlsInverted = false;
+    }
+}
