@@ -1,0 +1,7 @@
+Usando os assets criados até o momento e o sistema de GUI do Unity,
+implemente a transição entre duas cenas a partir de botões em um menu de opções.
+Também, utilize o vídeo a seguir para entender como usar o evento de clique em botões
+https://www.youtube.com/watch?v=wg3RPMJXKw0
+
+Enviar .unitypackage para marcos.prof.cps@bentoquirino.com.br,
+assunto "Troca de cena 2º Games".
