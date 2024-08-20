@@ -21,3 +21,4 @@ Essa entrega deve conter:
 
 Enviar projeto em formato .unitypackge para marcos.prof.cps@bentoquirino.com.br
 Assunto: "Av Mensal 3ºBim DJ2D3D".
+Data: 27/08/2024
