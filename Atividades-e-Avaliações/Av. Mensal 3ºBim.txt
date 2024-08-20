@@ -13,6 +13,7 @@ Essa entrega deve conter:
     - Sorteio de cores do inimigo instanciado.
     - Troca de arma/bala.
     - Efeitos visuais: tiro, impacto, mortes, etc.
+      (CUIDADO: Nosso projeto não suporta URP/HRP, nem Shader Graph ou Visual Effect Graph)
     - Colisão da bala com inimigo e morte do inimigo.
   - Cenário montado e finalizado.
   - Modelos finalizados.
