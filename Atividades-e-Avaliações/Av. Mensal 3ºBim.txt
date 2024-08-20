@@ -1,0 +1,22 @@
+A avaliação mensal consiste na entrega de uma versão beta do Paint FPS.
+Essa entrega deve conter:
+
+- Tela título:
+  - Arte finalizada.
+  - Botão 'New Game' e 'Exit' funcionais.
+  - Troca de cena corretamente implementada.
+
+- Gameplay:
+  - Mecânicas finalizadas:
+    - Movimento do jogador.
+    - Pintura do cenário.
+    - Sorteio de cores do inimigo instanciado.
+    - Troca de arma/bala.
+    - Efeitos visuais: tiro, impacto, mortes, etc.
+    - Colisão da bala com inimigo e morte do inimigo.
+  - Cenário montado e finalizado.
+  - Modelos finalizados.
+  - Pause.
+
+Enviar projeto em formato .unitypackge para marcos.prof.cps@bentoquirino.com.br
+Assunto: "Av Mensal 3ºBim DJ2D3D".
