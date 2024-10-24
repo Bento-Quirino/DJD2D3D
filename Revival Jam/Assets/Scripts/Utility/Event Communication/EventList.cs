@@ -10,6 +10,8 @@
 
 		public const string PlayerLose = "Player Lose";
 
+		public const string AddUpdate = "AddUpdate";
+
 		#region Audio
 		public const string AudioPlayOneTime = "AudioPlayOneTime";
 		public const string AudioPlayLoop = "AudioPlayLoop";

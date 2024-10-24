@@ -4,33 +4,43 @@ using UnityEngine;
 using Utility.EasingEquations;
 using Utility.EventCommunication;
 
-public class EnemyMove : MonoBehaviour
+public class EnemyMove : MonoBehaviour, IUpdatable
 {
-    public float speed;
-    public Vector3 inicialPosition;
-    public Vector3 endPosition;
+	private void OnEnable()
+	{
+    interp = 0;
+		EventHub.Publish(EventList.AddUpdate, new EventData(this));
+	}
 
-    public float distance => Vector3.Distance(inicialPosition, transform.localScale);
+	#region Update
+	public bool active { get => gameObject.activeInHierarchy; }
 
-    private void Start()
+	public void FrameUpdate()
+	{
+		Move();
+	}
+	
+  public void PhysicsUpdate() { }
+  #endregion Update
+
+  float interp;
+  public float speed;
+  public Vector3 inicialPosition;
+  public Vector3 endPosition;
+
+  public float distance => Vector3.Distance(endPosition, transform.localScale);
+
+	void Move()
+  {
+    if(interp <= 1.01f)
     {
-        StartCoroutine(Move());
+			transform.localScale = EasingVector3Equations.Linear(inicialPosition, endPosition, interp);
+			interp += speed * Time.deltaTime;
+
+      if (distance <= 0.1f)
+      {
+        EventHub.Publish(EventList.PlayerLose);
+      }
     }
-
-    IEnumerator Move()
-    {
-        float t = 0;
-        while(t <= 1.01f)
-        {
-            transform.localScale = EasingVector3Equations.Linear(inicialPosition, endPosition, t);
-            t += speed * Time.deltaTime;
-
-            if(distance <= 0.1f)
-            {
-                EventHub.Publish(EventList.PlayerLose);
-            }
-
-            yield return null;
-        }
-    }
+  }
 }

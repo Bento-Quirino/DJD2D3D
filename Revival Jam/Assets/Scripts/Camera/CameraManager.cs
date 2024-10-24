@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    int index;
-    int length;
-    public RectTransform[] scenarios;
+  int index;
+  int length;
+  public Transform[] scenarios;
 
-    private void OnEnable()
-    {
-        index = 0;
-        length = scenarios.Length;
-    }
+  private void OnEnable()
+  {
+    index = 0;
+    length = scenarios.Length;
+  }
 
-    public void MoveLeft()
-    {
-        index--;
-        Move(index);
-    }
+  public void MoveLeft()
+  {
+    index--;
+    if(index < 0) { index = length - 1; }
 
-    public void MoveRight()
-    {
-        index++;
-        Move(index);
-    }
+    Move(index);
+  }
 
-    public void Move(int index)
-    {
-        transform.position = scenarios[index % length].position;
-    }
+  public void MoveRight()
+  {
+    index++;
+    if(index > length - 1) { index = 0; }
+    Move(index);
+  }
+
+  public void Move(int index)
+  {
+    Vector3 pos = scenarios[index % length].position;
+    pos.z = transform.position.z;
+    transform.position = pos;
+  }
 }
