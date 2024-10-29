@@ -1,0 +1,2 @@
+Os gifs dentro das pastas são APENAS usados para a visualização das animações e como elas devem ser.
+E nada além disto, já que serão usados os spritesheets que são no projeto, os arquivos .piskel são usados para editar partes das artes para quem estiver interessado, além de arquivar para uso depois.

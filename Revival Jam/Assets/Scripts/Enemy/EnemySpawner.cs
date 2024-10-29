@@ -7,61 +7,72 @@ using Utility.Random;
 
 public class EnemySpawner : MonoBehaviour, IUpdatable
 {
-	#region Pooling
+    #region Pooling
 
-	public PoolableEnemy[] prefab;
-	List<ObjectPooler<PoolableEnemy>> pooler;
+    public PoolableEnemy[] prefab;
+    public List<ObjectPooler<PoolableEnemy>> pooler;
 
-	private void Awake()
-	{
-		pooler = new();
-		for (int i = 0; i < prefab.Length; i++)
-		{
-			GameObject g = new("Enemy Storage " + i);
-			pooler.Add(new ObjectPooler<PoolableEnemy>(prefab[i], 20, Vector3.down * 5000, true, g.transform));
-		}
-	}
+    private void Awake()
+    {
+        pooler = new();
+        for (int i = 0; i < prefab.Length; i++)
+        {
+            GameObject g = new("Enemy Storage " + i);
+            pooler.Add(new ObjectPooler<PoolableEnemy>(prefab[i], 20, Vector3.down * 5000, true, g.transform));
+        }
+    }
 
-	private void Start()
-	{
-		EventHub.Publish(EventList.AddUpdate, new EventData(this));
-	}
-	#endregion Pooling
+    private void Start()
+    {
+        EventHub.Publish(EventList.AddUpdate, new EventData(this));
+    }
+    #endregion Pooling
 
-	#region Spawn
-	
-	public float interval, time;
-	public List<SpawnPoint> spawnPoints;
+    #region Spawn
 
-	public void Spawn()
-	{
-		time -= Time.deltaTime;
-		if (time <= 0)
-		{
-			time = interval;
-			PoolableEnemy enemy = pooler[RandomStream.NextInt(0, pooler.Count)].GetObject();
+    public float intervalMax, time;
+    public float intervalMin;
+    public List<SpawnPoint> spawnPoints;
 
-			SpawnPoint point = spawnPoints[RandomStream.NextInt(0, spawnPoints.Count)];
-			if(point.occupied) { return; }
+    public void Spawn()
+    {
 
-			point.occupant = enemy;
-			enemy.transform.position = point.position;
-			enemy.Activate(0);
-		}
-	}
+        time -= Time.deltaTime;
+        if (time <= 0)
+        {
+            time = RandomStream.NextFloat(intervalMin, intervalMax);
+            SpawnPoint point = spawnPoints[RandomStream.NextInt(0, spawnPoints.Count)];
 
-	#endregion Spawn
+            if (!point.IsOccupied)
+            {
+                PoolableEnemy enemy = pooler[RandomStream.NextInt(0, pooler.Count)].GetObject();
+                enemy.SetSpawnPoint(point);
+                enemy.transform.position = point.position;
+                enemy.Activate(0);
+             
 
-	#region Update
+            }
 
-	public bool active => gameObject.activeInHierarchy;
+        }
+    }
 
-	public void FrameUpdate()
-	{
-		Spawn();
-	}
 
-	public void PhysicsUpdate() {}
 
-	#endregion Update
+
+
+
+    #endregion Spawn
+
+    #region Update
+
+    public bool active => gameObject.activeInHierarchy;
+
+    public void FrameUpdate()
+    {
+        Spawn();
+    }
+
+    public void PhysicsUpdate() { }
+
+    #endregion Update
 }
