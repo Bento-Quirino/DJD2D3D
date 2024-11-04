@@ -1,0 +1,25 @@
+Como avaliação bimestral, a turma decidiu trabalhar no pré-desenvolvimento do TCC durante as aulas.
+A organização das atividades ficaram da seguinte forma:
+
+3 personagens completos - Bertolino, Pagoto e Inrry
+|-> Caixas de dialogo - Pedro Bertolino
+
+4 Concept dos Cenarios - Ana e Otavio T
+
+Modelo do cenário - Luis e Pagoto
+
+1 cena - Protagonista com movimentação e combate básico, 1 dummy pra testar combate e 1 npc com diálogo. - Inrry e Otavio S
+
+Menu principal - Pagoto e Inrry - conceito
+
+1 musica pro menu - Kevin, Luis e Inrry
+
+SFX: Luis e Baiano (Som de passos, som de população, som de soco)
+
+VFX: Pedro Bertolino 
+
+História/Enredo/Sinopse: Bertolino
+
+Enviar cada parte do material como issue. Enviar link para marcos.prof.cps@bentoquirino.com.br
+Assunto: "Av Bim 4º 2ºGames"
+Prazo 19/11/2024
